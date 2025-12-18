@@ -196,21 +196,21 @@ export default function AudiobookResearchTool() {
   const topOpportunities = sortedByOpportunity.filter(r => !r.error).slice(0, 10);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">Audiobook Market Research</h1>
-          <p className="text-slate-400">Analyze keywords with demand/supply matrix & popularity insights</p>
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(to bottom right, #0f172a, #1e293b, #0f172a)', padding: '24px' }}>
+      <div style={{ maxWidth: '80rem', margin: '0 auto' }}>
+        <div style={{ marginBottom: '32px' }}>
+          <h1 style={{ fontSize: '36px', fontWeight: 'bold', color: '#fff', marginBottom: '8px' }}>Audiobook Market Research</h1>
+          <p style={{ color: '#94a3b8' }}>Analyze keywords with demand/supply matrix & popularity insights</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          <div className="lg:col-span-1 space-y-4">
-            <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-              <h2 className="text-lg font-semibold text-white mb-4">Configuration</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ backgroundColor: '#1e293b', borderRadius: '12px', padding: '24px', border: '1px solid #334155' }}>
+              <h2 style={{ fontSize: '18px', fontWeight: '600', color: '#fff', marginBottom: '16px' }}>Configuration</h2>
               
-              <div className="space-y-4">
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                  <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#cbd5e1', marginBottom: '8px' }}>
                     Client ID
                   </label>
                   <input
@@ -218,13 +218,13 @@ export default function AudiobookResearchTool() {
                     value={clientId}
                     onChange={(e) => setClientId(e.target.value)}
                     placeholder="Paste your Client ID"
-                    className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded text-white placeholder-slate-500 text-sm focus:outline-none focus:border-green-500"
+                    style={{ width: '100%', padding: '8px 12px', backgroundColor: '#334155', border: '1px solid #475569', borderRadius: '4px', color: '#fff' }}
                     disabled={isSearching || !!accessToken}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                  <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#cbd5e1', marginBottom: '8px' }}>
                     Client Secret
                   </label>
                   <input
@@ -232,7 +232,7 @@ export default function AudiobookResearchTool() {
                     value={clientSecret}
                     onChange={(e) => setClientSecret(e.target.value)}
                     placeholder="Paste your Client Secret"
-                    className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded text-white placeholder-slate-500 text-sm focus:outline-none focus:border-green-500"
+                    style={{ width: '100%', padding: '8px 12px', backgroundColor: '#334155', border: '1px solid #475569', borderRadius: '4px', color: '#fff' }}
                     disabled={isSearching || !!accessToken}
                   />
                 </div>
@@ -241,19 +241,18 @@ export default function AudiobookResearchTool() {
                   <button
                     onClick={requestAccessToken}
                     disabled={isSearching}
-                    className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded transition-colors"
+                    style={{ width: '100%', backgroundColor: '#2563eb', color: '#fff', fontWeight: '500', padding: '8px 16px', borderRadius: '4px', border: 'none', cursor: 'pointer', transition: 'all 0.2s' }}
+                    onMouseOver={(e) => !isSearching && (e.target.style.backgroundColor = '#1d4ed8')}
+                    onMouseOut={(e) => !isSearching && (e.target.style.backgroundColor = '#2563eb')}
                   >
                     Request Access Token
                   </button>
                 ) : (
-                  <div className="bg-green-900/30 border border-green-700 rounded p-3">
-                    <p className="text-green-300 text-sm font-medium">{tokenStatus}</p>
+                  <div style={{ backgroundColor: 'rgba(20, 83, 45, 0.3)', border: '1px solid #15803d', borderRadius: '8px', padding: '12px' }}>
+                    <p style={{ color: '#86efac', fontSize: '14px', fontWeight: '500' }}>{tokenStatus}</p>
                     <button
-                      onClick={() => {
-                        setAccessToken('');
-                        setTokenStatus('');
-                      }}
-                      className="text-xs text-green-400 hover:underline mt-2"
+                      onClick={() => { setAccessToken(''); setTokenStatus(''); }}
+                      style={{ fontSize: '12px', color: '#4ade80', marginTop: '8px', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline' }}
                     >
                       Use different credentials
                     </button>
@@ -261,17 +260,17 @@ export default function AudiobookResearchTool() {
                 )}
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                  <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#cbd5e1', marginBottom: '8px' }}>
                     Keywords (one per line)
                   </label>
                   <textarea
                     value={keywords}
                     onChange={(e) => setKeywords(e.target.value)}
                     placeholder="fantasy audiobook&#10;mystery detective&#10;sci-fi future..."
-                    className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded text-white placeholder-slate-500 text-sm focus:outline-none focus:border-green-500 h-32 resize-none"
+                    style={{ width: '100%', padding: '8px 12px', backgroundColor: '#334155', border: '1px solid #475569', borderRadius: '4px', color: '#fff', height: '128px', resize: 'none' }}
                     disabled={isSearching}
                   />
-                  <p className="text-xs text-slate-500 mt-2">
+                  <p style={{ fontSize: '12px', color: '#64748b', marginTop: '8px' }}>
                     {keywords.split('\n').filter(k => k.trim()).length} keywords
                   </p>
                 </div>
@@ -279,87 +278,64 @@ export default function AudiobookResearchTool() {
                 <button
                   onClick={handleSearch}
                   disabled={isSearching || !accessToken}
-                  className="w-full bg-green-600 hover:bg-green-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded transition-colors flex items-center justify-center gap-2"
+                  style={{ width: '100%', backgroundColor: '#16a34a', color: '#fff', fontWeight: '500', padding: '8px 16px', borderRadius: '4px', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', opacity: (isSearching || !accessToken) ? 0.5 : 1 }}
+                  onMouseOver={(e) => !isSearching && !accessToken || (e.target.style.backgroundColor = '#15803d')}
+                  onMouseOut={(e) => !isSearching && !accessToken || (e.target.style.backgroundColor = '#16a34a')}
                 >
                   {isSearching ? <Pause size={18} /> : <Play size={18} />}
                   {isSearching ? 'Searching...' : 'Start Research'}
                 </button>
 
                 {isSearching && (
-                  <div className="space-y-2">
-                    <div className="w-full bg-slate-700 rounded h-2 overflow-hidden">
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <div style={{ width: '100%', backgroundColor: '#334155', borderRadius: '8px', height: '8px', overflow: 'hidden' }}>
                       <div
-                        className="bg-green-600 h-full transition-all"
-                        style={{ width: `${progress}%` }}
+                        style={{ backgroundColor: '#16a34a', height: '100%', transition: 'all 0.3s', width: `${progress}%` }}
                       />
                     </div>
-                    <p className="text-xs text-slate-400 text-center">{progress}% complete</p>
+                    <p style={{ fontSize: '12px', color: '#64748b', textAlign: 'center' }}>{progress}% complete</p>
                   </div>
                 )}
               </div>
             </div>
           </div>
 
-          <div className="lg:col-span-3 space-y-4">
+          <div style={{ gridColumn: 'span 2', display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {error && (
-              <div className="bg-red-900/50 border border-red-600 rounded-lg p-4 flex gap-3">
-                <AlertCircle size={20} className="text-red-400 flex-shrink-0 mt-0.5" />
+              <div style={{ backgroundColor: 'rgba(127, 29, 29, 0.5)', border: '1px solid #dc2626', borderRadius: '12px', padding: '16px', display: 'flex', gap: '12px' }}>
+                <AlertCircle size={20} style={{ color: '#f87171', flexShrink: 0, marginTop: '4px' }} />
                 <div>
-                  <p className="text-red-200 font-medium">Error</p>
-                  <p className="text-red-300 text-sm">{error}</p>
+                  <p style={{ color: '#fecaca', fontWeight: '500' }}>Error</p>
+                  <p style={{ color: '#fca5a5', fontSize: '14px' }}>{error}</p>
                 </div>
               </div>
             )}
 
             {results.length > 0 && (
               <>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  <div className="bg-slate-800 rounded-lg p-4 border border-slate-700">
-                    <p className="text-slate-400 text-xs">Keywords</p>
-                    <p className="text-2xl font-bold text-white">{validResults}</p>
-                  </div>
-                  <div className="bg-slate-800 rounded-lg p-4 border border-slate-700">
-                    <p className="text-slate-400 text-xs">Total Audiobooks</p>
-                    <p className="text-2xl font-bold text-green-400">{totalAudiobooks}</p>
-                  </div>
-                  <div className="bg-slate-800 rounded-lg p-4 border border-slate-700">
-                    <p className="text-slate-400 text-xs">Avg Popularity</p>
-                    <p className="text-2xl font-bold text-blue-400">{avgPopularityScore}</p>
-                  </div>
-                  <div className="bg-slate-800 rounded-lg p-4 border border-slate-700">
-                    <p className="text-slate-400 text-xs">Best Opportunity</p>
-                    <p className="text-2xl font-bold text-purple-400">
-                      {topOpportunities[0] ? getOpportunityScore(topOpportunities[0]) : '-'}
-                    </p>
-                  </div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px' }}>
+                  {[
+                    { label: 'Keywords', value: validResults, color: '#fff' },
+                    { label: 'Total Audiobooks', value: totalAudiobooks, color: '#4ade80' },
+                    { label: 'Avg Popularity', value: avgPopularityScore, color: '#60a5fa' },
+                    { label: 'Best Opportunity', value: topOpportunities[0] ? getOpportunityScore(topOpportunities[0]) : '-', color: '#c084fc' }
+                  ].map((stat, i) => (
+                    <div key={i} style={{ backgroundColor: '#1e293b', borderRadius: '12px', padding: '16px', border: '1px solid #334155' }}>
+                      <p style={{ color: '#94a3b8', fontSize: '12px' }}>{stat.label}</p>
+                      <p style={{ fontSize: '24px', fontWeight: 'bold', color: stat.color }}>{stat.value}</p>
+                    </div>
+                  ))}
                 </div>
 
-                <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-                  <h3 className="text-lg font-semibold text-white mb-4">Demand vs. Supply Matrix</h3>
-                  <div className="h-96 flex items-center justify-center">
+                <div style={{ backgroundColor: '#1e293b', borderRadius: '12px', padding: '24px', border: '1px solid #334155' }}>
+                  <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#fff', marginBottom: '16px' }}>Demand vs. Supply Matrix</h3>
+                  <div style={{ height: '384px' }}>
                     <ResponsiveContainer width="100%" height="100%">
                       <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
                         <CartesianGrid strokeDasharray="3 3" stroke="#475569" />
-                        <XAxis 
-                          type="number" 
-                          dataKey="x" 
-                          name="Supply (Audiobooks)" 
-                          stroke="#94a3b8"
-                          label={{ value: 'Supply (Audiobooks Found)', position: 'insideBottomRight', offset: -10, fill: '#cbd5e1' }}
-                        />
-                        <YAxis 
-                          type="number" 
-                          dataKey="y" 
-                          name="Demand (Interest)" 
-                          stroke="#94a3b8"
-                          label={{ value: 'Demand (Trend Interest)', angle: -90, position: 'insideLeft', fill: '#cbd5e1' }}
-                        />
-                        <Tooltip 
-                          cursor={{ strokeDasharray: '3 3' }}
-                          contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #475569' }}
-                          labelStyle={{ color: '#e2e8f0' }}
-                          formatter={(value) => Math.round(value)}
-                        />
+                        <XAxis type="number" dataKey="x" stroke="#94a3b8" />
+                        <YAxis type="number" dataKey="y" stroke="#94a3b8" />
+                        <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #475569' }} />
                         <Scatter name="Keywords" data={results.filter(r => !r.error)}>
                           {results.map((entry, index) => {
                             if (entry.error) return null;
@@ -373,98 +349,57 @@ export default function AudiobookResearchTool() {
                       </ScatterChart>
                     </ResponsiveContainer>
                   </div>
-                  <div className="mt-4 grid grid-cols-2 gap-4 text-xs">
-                    <div className="p-3 bg-green-900/30 border border-green-700 rounded">
-                      <p className="font-semibold text-green-300">🟢 High Opportunity</p>
-                      <p className="text-green-200">Low supply, high demand</p>
-                    </div>
-                    <div className="p-3 bg-red-900/30 border border-red-700 rounded">
-                      <p className="font-semibold text-red-300">🔴 Saturated</p>
-                      <p className="text-red-200">High supply, low demand</p>
-                    </div>
-                  </div>
                 </div>
 
-                <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-                  <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-lg font-semibold text-white">Top Opportunities</h3>
+                <div style={{ backgroundColor: '#1e293b', borderRadius: '12px', padding: '24px', border: '1px solid #334155' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                    <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#fff' }}>Top Opportunities</h3>
                     <button
                       onClick={downloadCSV}
-                      className="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white px-3 py-1.5 rounded text-sm transition-colors"
+                      style={{ display: 'flex', alignItems: 'center', gap: '8px', backgroundColor: '#334155', color: '#fff', padding: '6px 12px', borderRadius: '4px', border: 'none', cursor: 'pointer', fontSize: '14px' }}
                     >
-                      <Download size={16} />
-                      Export CSV
+                      <Download size={16} /> Export CSV
                     </button>
                   </div>
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-sm">
+                  <div style={{ overflowX: 'auto' }}>
+                    <table style={{ width: '100%', fontSize: '14px', borderCollapse: 'collapse' }}>
                       <thead>
-                        <tr className="border-b border-slate-700">
-                          <th className="text-left py-3 px-4 text-slate-300 font-medium">Keyword</th>
-                          <th className="text-right py-3 px-4 text-slate-300 font-medium">Supply</th>
-                          <th className="text-right py-3 px-4 text-slate-300 font-medium">Demand</th>
-                          <th className="text-right py-3 px-4 text-slate-300 font-medium">Popularity</th>
-                          <th className="text-right py-3 px-4 text-slate-300 font-medium">Trend</th>
-                          <th className="text-right py-3 px-4 text-slate-300 font-medium">Score</th>
+                        <tr style={{ borderBottom: '1px solid #334155' }}>
+                          <th style={{ textAlign: 'left', padding: '12px 16px', color: '#cbd5e1', fontWeight: '500' }}>Keyword</th>
+                          <th style={{ textAlign: 'right', padding: '12px 16px', color: '#cbd5e1', fontWeight: '500' }}>Supply</th>
+                          <th style={{ textAlign: 'right', padding: '12px 16px', color: '#cbd5e1', fontWeight: '500' }}>Demand</th>
+                          <th style={{ textAlign: 'right', padding: '12px 16px', color: '#cbd5e1', fontWeight: '500' }}>Popularity</th>
+                          <th style={{ textAlign: 'right', padding: '12px 16px', color: '#cbd5e1', fontWeight: '500' }}>Trend</th>
+                          <th style={{ textAlign: 'right', padding: '12px 16px', color: '#cbd5e1', fontWeight: '500' }}>Score</th>
                         </tr>
                       </thead>
                       <tbody>
                         {topOpportunities.map((result, idx) => {
                           const opportunity = getOpportunityScore(result);
                           return (
-                            <tr key={idx} className="border-b border-slate-700 hover:bg-slate-700/50">
-                              <td className="py-3 px-4 text-white">{result.keyword}</td>
-                              <td className="py-3 px-4 text-right text-slate-300">{result.audiobooks}</td>
-                              <td className="py-3 px-4 text-right text-blue-400">{result.estimatedTrendsInterest}</td>
-                              <td className="py-3 px-4 text-right text-green-400">{result.avgPopularity}</td>
-                              <td className="py-3 px-4 text-right">
+                            <tr key={idx} style={{ borderBottom: '1px solid #334155' }}>
+                              <td style={{ padding: '12px 16px', color: '#fff' }}>{result.keyword}</td>
+                              <td style={{ padding: '12px 16px', textAlign: 'right', color: '#cbd5e1' }}>{result.audiobooks}</td>
+                              <td style={{ padding: '12px 16px', textAlign: 'right', color: '#60a5fa' }}>{result.estimatedTrendsInterest}</td>
+                              <td style={{ padding: '12px 16px', textAlign: 'right', color: '#4ade80' }}>{result.avgPopularity}</td>
+                              <td style={{ padding: '12px 16px', textAlign: 'right' }}>
                                 {result.popularityTrend !== 0 && (
-                                  <div className="flex items-center justify-end gap-1">
+                                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '4px' }}>
                                     {result.popularityTrend > 0 ? (
-                                      <TrendingUp size={14} className="text-green-400" />
+                                      <TrendingUp size={14} style={{ color: '#4ade80' }} />
                                     ) : (
-                                      <TrendingDown size={14} className="text-red-400" />
+                                      <TrendingDown size={14} style={{ color: '#f87171' }} />
                                     )}
-                                    <span className={result.popularityTrend > 0 ? 'text-green-400' : 'text-red-400'}>
+                                    <span style={{ color: result.popularityTrend > 0 ? '#4ade80' : '#f87171' }}>
                                       {result.popularityTrend > 0 ? '+' : ''}{result.popularityTrend}
                                     </span>
                                   </div>
                                 )}
                               </td>
-                              <td className="py-3 px-4 text-right font-semibold text-purple-400">{opportunity}</td>
+                              <td style={{ padding: '12px 16px', textAlign: 'right', fontWeight: '600', color: '#c084fc' }}>{opportunity}</td>
                             </tr>
                           );
                         })}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-
-                <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-                  <h3 className="text-lg font-semibold text-white mb-4">All Results</h3>
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-xs">
-                      <thead>
-                        <tr className="border-b border-slate-700">
-                          <th className="text-left py-2 px-3 text-slate-300 font-medium">Keyword</th>
-                          <th className="text-right py-2 px-3 text-slate-300 font-medium">Audiobooks</th>
-                          <th className="text-right py-2 px-3 text-slate-300 font-medium">Pop.</th>
-                          <th className="text-right py-2 px-3 text-slate-300 font-medium">Trends</th>
-                          <th className="text-right py-2 px-3 text-slate-300 font-medium">Pop. Δ</th>
-                          <th className="text-right py-2 px-3 text-slate-300 font-medium">Supply Δ</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {results.map((result, idx) => (
-                          <tr key={idx} className="border-b border-slate-700 hover:bg-slate-700/30">
-                            <td className="py-2 px-3 text-white">{result.keyword}</td>
-                            <td className="py-2 px-3 text-right text-slate-300">{result.error ? '-' : result.audiobooks}</td>
-                            <td className="py-2 px-3 text-right text-green-400">{result.error ? '-' : result.avgPopularity}</td>
-                            <td className="py-2 px-3 text-right text-blue-400">{result.error ? '-' : result.estimatedTrendsInterest}</td>
-                            <td className="py-2 px-3 text-right text-xs">{result.error ? '-' : (result.popularityTrend > 0 ? '+' : '') + result.popularityTrend}</td>
-                            <td className="py-2 px-3 text-right text-xs">{result.error ? '-' : (result.supplyTrend > 0 ? '+' : '') + result.supplyTrend}</td>
-                          </tr>
-                        ))}
                       </tbody>
                     </table>
                   </div>
@@ -473,28 +408,10 @@ export default function AudiobookResearchTool() {
             )}
 
             {results.length === 0 && !isSearching && (
-              <div className="bg-slate-800 rounded-lg p-12 border border-slate-700 text-center">
-                <p className="text-slate-400">Enter keywords and start researching to see results</p>
+              <div style={{ backgroundColor: '#1e293b', borderRadius: '12px', padding: '48px', border: '1px solid #334155', textAlign: 'center' }}>
+                <p style={{ color: '#94a3b8' }}>Enter keywords and start researching to see results</p>
               </div>
             )}
-          </div>
-        </div>
-
-        <div className="mt-8 bg-slate-800 rounded-lg p-6 border border-slate-700">
-          <h3 className="text-lg font-semibold text-white mb-4">How to Read the Data</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-slate-300">
-            <div>
-              <p className="font-medium text-white mb-2">📊 Audiobooks</p>
-              <p className="text-slate-400">Supply: How many audiobooks found on Spotify for this keyword</p>
-            </div>
-            <div>
-              <p className="font-medium text-white mb-2">📈 Trends Interest</p>
-              <p className="text-slate-400">Estimated demand based on audiobook count & engagement patterns</p>
-            </div>
-            <div>
-              <p className="font-medium text-white mb-2">⭐ Popularity Score</p>
-              <p className="text-slate-400">Average Spotify popularity of top audiobooks (0-100). Higher = more engagement</p>
-            </div>
           </div>
         </div>
       </div>
